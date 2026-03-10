@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema Inteligente para Salgadarias</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Jost:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        :root {
+            --accent: #FF5F2F;
+            --light: #F6F6F6;
+            --light2: #E6E6E6;
+            --dark: #3D3D3D;
+            --bg: #1E1E1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background: var(--bg);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 24px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Khand', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--light2);
+            margin-bottom: 18px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        button {
+            background: var(--accent);
+            border: none;
+            color: var(--light);
+            padding: 14px 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            opacity: .9;
+        }
+
+        input {
+            padding: 14px;
+            border-radius: 6px;
+            border: none;
+            width: 260px;
+            margin-right: 10px;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .hero-form {
+            margin-top: 30px;
+        }
+
+        .section {
+            border-top: 1px solid #2a2a2a;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            background: #252525;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .feature i {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .vision {
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .step {
+            background: #252525;
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+            color: #888;
+            border-top: 1px solid #2a2a2a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero container">
+
+        <h1>Nosherp</h1>
+
+        <p class="subtitle">
+            Uma nova geração de gestão para pastelarias e salgadarias.
+            Mais controle, mais organização e decisões baseadas em dados.
+        </p>
+
+        <p>
+            Estamos desenvolvendo um sistema criado especificamente para negócios de salgados.
+            Participe da lista de acesso antecipado e acompanhe o desenvolvimento.
+        </p>
+
+        <div class="hero-form">
+            <input type="email" placeholder="Seu melhor email">
+            <button>Entrar na lista</button>
+        </div>
+
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <h2>O Problema</h2>
+
+            <p>
+                Grande parte das salgadarias e pastelarias ainda gerenciam pedidos, estoque e vendas de forma manual ou
+                utilizando sistemas genéricos que não foram criados para a realidade desse tipo de negócio.
+            </p>
+
+            <p>
+                Isso gera perda de controle financeiro, desperdício de ingredientes e dificuldade para entender o
+                desempenho real da empresa.
+            </p>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <h2>Nossa Solução</h2>
+
+            <p>
+                Estamos criando um sistema de gestão pensado especificamente para o funcionamento de salgadarias e
+                pastelarias.
+                O objetivo é tornar a logística do negócio mais inteligente, simples e organizada.
+            </p>
+
+            <p>
+                O primeiro passo será um PDV moderno e eficiente.
+                A partir dele, evoluiremos gradualmente para um ERP completo e posteriormente para uma plataforma de
+                inteligência empresarial.
+            </p>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <h2>Funcionalidades do MVP</h2>
+
+            <div class="features">
+
+                <div class="feature">
+                    <i data-feather="shopping-cart"></i>
+                    <h3>Gestão de Pedidos</h3>
+                    <p>
+                        Criação, registro e controle completo de pedidos com segurança e histórico de operações.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <i data-feather="book-open"></i>
+                    <h3>Gestão de Cardápio</h3>
+                    <p>
+                        Cadastro completo dos itens vendidos, com fotos, preços e ficha técnica integrada ao estoque.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <i data-feather="archive"></i>
+                    <h3>Controle de Estoque</h3>
+                    <p>
+                        Registro dos ingredientes e produtos utilizados, permitindo controle preciso dos insumos.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <i data-feather="bar-chart-2"></i>
+                    <h3>Dashboard Financeiro</h3>
+                    <p>
+                        Visualização simples do caixa e acompanhamento das vendas realizadas no dia.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <i data-feather="wifi-off"></i>
+                    <h3>Funcionamento Offline</h3>
+                    <p>
+                        O sistema continua funcionando mesmo sem internet, evitando interrupções nas vendas.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <i data-feather="shield"></i>
+                    <h3>Segurança e Controle</h3>
+                    <p>
+                        Login seguro, controle de permissões, logs de operações e backups automáticos.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container vision">
+
+            <h2>Visão de Futuro</h2>
+
+            <p>
+                Este projeto nasce como um sistema de vendas, mas foi projetado para crescer.
+            </p>
+
+            <p>
+                A evolução do sistema seguirá três etapas estratégicas:
+            </p>
+
+            <div class="steps">
+
+                <div class="step">
+                    <h3>Etapa 1</h3>
+                    <p>
+                        Criação de um PDV especializado para salgadarias e pastelarias.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Etapa 2</h3>
+                    <p>
+                        Expansão para um ERP modular com gestão completa do negócio.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Etapa 3</h3>
+                    <p>
+                        Implementação de Business Intelligence para análise avançada de dados.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta">
+
+        <h2>Participe do Acesso Antecipado</h2>
+
+        <p>
+            Estamos construindo este sistema junto com os primeiros usuários.
+            Entre para a lista e seja avisado quando o MVP estiver disponível.
+        </p>
+
+        <br>
+
+        <input type="email" placeholder="Seu email">
+        <button>Quero participar</button>
+
+    </section>
+
+    <footer>
+
+        <p>
+            Projeto em desenvolvimento • Sistema de gestão para salgadarias
+        </p>
+
+    </footer>
+
+    <script>
+        feather.replace()
+    </script>
+
+</body>
+
+</html>

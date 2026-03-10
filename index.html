@@ -1,352 +1,2106 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosherp — PDV para Salgadarias e Pastelarias</title>
 
-    <title>Sistema Inteligente para Salgadarias</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Jost:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Jost:ital,wght@0,700;1,400&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <style>
-        :root {
-            --accent: #FF5F2F;
-            --light: #F6F6F6;
-            --light2: #E6E6E6;
-            --dark: #3D3D3D;
-            --bg: #1E1E1E;
-        }
+  <style>
+    /* ============================================
+       CSS VARIABLES — DESIGN TOKENS
+    ============================================ */
+    :root {
+      --primary: #FF5F2F;
+      --primary-hover: #E54E20;
+      --primary-glow: rgba(255, 95, 47, 0.25);
+      --primary-subtle: rgba(255, 95, 47, 0.10);
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
 
-        body {
-            font-family: 'Jost', sans-serif;
-            background: var(--bg);
-            color: var(--light);
-            line-height: 1.6;
-        }
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+      --space-2xl: 120px;
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 24px;
-        }
+      --transition: 220ms ease;
+      --max-w: 1200px;
 
-        h1,
-        h2,
-        h3 {
-            font-family: 'Khand', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+      --font-title: 'Khand', sans-serif;
+      --font-body: 'Jost', sans-serif;
+    }
 
-        h1 {
-            font-size: 52px;
-            margin-bottom: 16px;
-        }
+    /* LIGHT THEME */
+    [data-theme="light"] {
+      --bg: #F6F6F6;
+      --fg: #EBEBEB;
+      --fg2: #E0E0E0;
+      --text: #161616;
+      --text-muted: #555555;
+      --border: #D0D0D0;
+      --card-shadow: 0 2px 20px rgba(0,0,0,0.07);
+      --nav-bg: rgba(246, 246, 246, 0.88);
+    }
 
-        h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+    /* DARK THEME */
+    [data-theme="dark"] {
+      --bg: #303030;
+      --fg: #3D3D3D;
+      --fg2: #444444;
+      --text: #F0F0F0;
+      --text-muted: #AAAAAA;
+      --border: #4A4A4A;
+      --card-shadow: 0 2px 24px rgba(0,0,0,0.3);
+      --nav-bg: rgba(48, 48, 48, 0.88);
+    }
 
-        p {
-            color: var(--light2);
-            margin-bottom: 18px;
-        }
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .subtitle {
-            font-style: italic;
-            margin-bottom: 28px;
-        }
+    html { scroll-behavior: smooth; }
 
-        button {
-            background: var(--accent);
-            border: none;
-            color: var(--light);
-            padding: 14px 24px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 16px;
-        }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        button:hover {
-            opacity: .9;
-        }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
 
-        input {
-            padding: 14px;
-            border-radius: 6px;
-            border: none;
-            width: 260px;
-            margin-right: 10px;
-        }
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
 
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-top: 120px;
-            padding-bottom: 120px;
-        }
+    h1 { font-size: clamp(36px, 5.5vw, 60px); }
+    h2 { font-size: clamp(28px, 4vw, 44px); }
+    h3 { font-size: clamp(18px, 2.5vw, 24px); }
 
-        .hero-form {
-            margin-top: 30px;
-        }
+    .subtitle {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
 
-        .section {
-            border-top: 1px solid #2a2a2a;
-        }
+    .body-bold {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+    }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
+    /* ============================================
+       LAYOUT HELPERS
+    ============================================ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
 
-        .feature {
-            background: #252525;
-            padding: 24px;
-            border-radius: 8px;
-        }
+    .section {
+      padding: var(--space-xl) 0;
+    }
 
-        .feature i {
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
+    .section-alt {
+      background-color: var(--fg);
+    }
 
-        .vision {
-            text-align: center;
-        }
+    .section-label {
+      display: inline-block;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 6px;
+      margin-bottom: var(--space-sm);
+    }
 
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
+    .section-header {
+      max-width: 680px;
+    }
 
-        .step {
-            background: #252525;
-            padding: 24px;
-            border-radius: 8px;
-        }
+    .section-header .subtitle {
+      margin-top: 12px;
+    }
 
-        .cta {
-            text-align: center;
-            padding: 100px 20px;
-        }
+    .highlight {
+      color: var(--primary);
+    }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 14px;
-            color: #888;
-            border-top: 1px solid #2a2a2a;
-        }
-    </style>
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 18px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--primary-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px var(--primary-glow);
+    }
+
+    .btn-lg {
+      padding: 16px 36px;
+      font-size: 15px;
+    }
+
+    /* ============================================
+       CARDS
+    ============================================ */
+    .card {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px var(--primary-glow);
+    }
+
+    /* ============================================
+       HEADER / NAV
+    ============================================ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--fg);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Mobile menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: var(--space-md);
+      border-top: 1px solid var(--border);
+      gap: var(--space-sm);
+      background: var(--bg);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ============================================
+       HERO SECTION
+    ============================================ */
+    .hero {
+      padding-top: calc(68px + var(--space-xl));
+      padding-bottom: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative background blob */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -120px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle at center, rgba(255,95,47,0.12) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at center, rgba(255,95,47,0.06) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    .hero-eyebrow span {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+    }
+
+    .hero-headline {
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-headline .line2 {
+      color: var(--primary);
+      display: block;
+    }
+
+    .hero-subtitle {
+      margin-bottom: var(--space-lg);
+      max-width: 520px;
+    }
+
+    /* Email capture form */
+    .hero-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .hero-form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .email-input {
+      flex: 1;
+      min-width: 220px;
+      padding: 15px 18px;
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text);
+      transition: border-color var(--transition);
+      outline: none;
+    }
+
+    .email-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .email-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-subtle);
+    }
+
+    .form-note {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Hero visual / mockup */
+    .hero-visual {
+      position: relative;
+    }
+
+    .mockup-shell {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    }
+
+    .mockup-topbar {
+      background: var(--fg2);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mock-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .mock-dot.red { background: #FF5F5F; }
+    .mock-dot.yellow { background: #FFD460; }
+    .mock-dot.green { background: #6DDF6D; }
+
+    .mockup-content {
+      padding: 20px;
+    }
+
+    /* POS mockup elements */
+    .pos-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .pos-title {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .pos-badge {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .pos-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pos-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+    }
+
+    .pos-item-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .pos-item-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .pos-item-price {
+      font-family: var(--font-title);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .pos-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+
+    .pos-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .pos-total-label {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .pos-total-value {
+      font-family: var(--font-title);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .pos-payment-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .pos-pay-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      cursor: default;
+    }
+
+    .pos-pay-btn.card {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .pos-pay-btn.pix {
+      background: var(--fg2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-family: var(--font-title);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border);
+    }
+
+    /* ============================================
+       PROBLEM SECTION
+    ============================================ */
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .problem-card {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      transition: all var(--transition);
+    }
+
+    .problem-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .problem-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--primary-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-sm);
+      color: var(--primary);
+    }
+
+    .problem-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       SOLUTION SECTION
+    ============================================ */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: var(--space-lg);
+    }
+
+    .solution-points {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .solution-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .check-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      color: #fff;
+    }
+
+    .solution-point-text strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .solution-point-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .modular-badge-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .mod-badge {
+      background: var(--fg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      transition: all var(--transition);
+    }
+
+    .mod-badge.active {
+      background: var(--primary-subtle);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Solution visual: stacked cards */
+    .solution-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sol-card {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all var(--transition);
+    }
+
+    .sol-card:hover {
+      border-color: var(--primary);
+      transform: translateX(6px);
+    }
+
+    .sol-card-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--primary-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .sol-card-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .sol-card-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       HOW IT WORKS SECTION
+    ============================================ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 2px;
+      background: linear-gradient(to right, var(--primary) 0%, var(--border) 100%);
+      z-index: 0;
+    }
+
+    .step-card {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto var(--space-sm);
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      transition: all var(--transition);
+    }
+
+    .step-card:hover .step-number {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .step-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       MODULES SECTION
+    ============================================ */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .module-card {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: background var(--transition);
+    }
+
+    .module-card:hover::before {
+      background: var(--primary);
+    }
+
+    .module-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    .module-card.featured {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, var(--fg) 0%, rgba(255,95,47,0.05) 100%);
+    }
+
+    .module-card.featured::before {
+      background: var(--primary);
+    }
+
+    .module-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-sm);
+    }
+
+    .module-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .module-tag {
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .tag-first {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .tag-soon {
+      background: var(--fg2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .module-card h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .module-card > p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+      line-height: 1.65;
+    }
+
+    .module-features {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .module-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .module-feature i {
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       VALUE PROPOSITION / BENEFITS SECTION
+    ============================================ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .benefit-card {
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      transition: all var(--transition);
+      text-align: center;
+    }
+
+    .benefit-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px var(--primary-glow);
+    }
+
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-subtle);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-sm);
+      color: var(--primary);
+      transition: all var(--transition);
+    }
+
+    .benefit-card:hover .benefit-icon {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .benefit-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================
+       EARLY ACCESS SECTION
+    ============================================ */
+    .early-access {
+      padding: var(--space-xl) 0;
+    }
+
+    .early-access-inner {
+      background: linear-gradient(135deg, var(--fg) 0%, rgba(255,95,47,0.07) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .early-access-inner::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255,95,47,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .early-access-inner::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255,95,47,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .early-access-inner > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .early-access-inner h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      margin-bottom: 14px;
+    }
+
+    .early-access-inner .subtitle {
+      max-width: 560px;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .early-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .early-form .email-input {
+      max-width: 380px;
+    }
+
+    .early-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      padding: var(--space-lg) 0 var(--space-md);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-lg);
+      align-items: center;
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--space-md);
+    }
+
+    .footer-logo {
+      font-family: var(--font-title);
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .footer-logo span { color: var(--primary); }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-email {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--transition);
+    }
+
+    .footer-email:hover {
+      color: var(--primary);
+    }
+
+    /* ============================================
+       TOAST NOTIFICATION
+    ============================================ */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--fg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast i {
+      color: var(--primary);
+    }
+
+    /* ============================================
+       SCROLL ANIMATIONS
+    ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================
+       RESPONSIVE — TABLET
+    ============================================ */
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .hero-visual {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .solution-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-grid::before {
+        display: none;
+      }
+
+      .problems-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .early-access-inner {
+        padding: 48px var(--space-lg);
+      }
+    }
+
+    /* ============================================
+       RESPONSIVE — MOBILE
+    ============================================ */
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 0;
+      }
+
+      .hero {
+        padding-top: calc(68px + 48px);
+        padding-bottom: 48px;
+      }
+
+      .hero-stats {
+        gap: var(--space-sm);
+      }
+
+      .hero-form-row {
+        flex-direction: column;
+      }
+
+      .email-input {
+        min-width: unset;
+        width: 100%;
+      }
+
+      .btn.btn-lg {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .problems-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .early-access-inner {
+        padding: var(--space-lg) var(--space-md);
+        border-radius: var(--radius-lg);
+      }
+
+      .early-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .early-form .email-input {
+        max-width: unset;
+      }
+
+      .early-form .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-    <section class="hero container">
+  <!-- ============================================
+       HEADER
+  ============================================ -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">Nos<span>herp</span></a>
 
-        <h1>Nosherp</h1>
+        <ul class="nav-links">
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#acesso">Acesso Antecipado</a></li>
+        </ul>
 
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+            <i data-lucide="sun" width="18" height="18" id="themeIcon"></i>
+          </button>
+          <a href="#acesso" class="btn btn-primary" style="padding:10px 20px;font-size:12px;">
+            Entrar na lista
+          </a>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#problema" onclick="closeMobile()">Problema</a>
+        <a href="#solucao" onclick="closeMobile()">Solução</a>
+        <a href="#como-funciona" onclick="closeMobile()">Como Funciona</a>
+        <a href="#modulos" onclick="closeMobile()">Módulos</a>
+        <a href="#acesso" onclick="closeMobile()">Acesso Antecipado</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO SECTION
+  ============================================ -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Texto hero -->
+        <div class="hero-content">
+          <div class="hero-eyebrow fade-in">
+            <span class="dot"></span>
+            <span>Acesso antecipado disponível</span>
+          </div>
+
+          <h1 class="hero-headline fade-in fade-in-delay-1">
+            O PDV feito para<br>
+            <span class="line2">salgadarias que<br>vendem de verdade</span>
+          </h1>
+
+          <p class="subtitle hero-subtitle fade-in fade-in-delay-2">
+            Nosherp automatiza pedidos, organiza seu cardápio e controla seu estoque — tudo em um sistema criado especialmente para sua salgadaria ou pastelaria.
+          </p>
+
+          <div class="hero-form fade-in fade-in-delay-3">
+            <div class="hero-form-row">
+              <input
+                type="email"
+                class="email-input"
+                id="heroEmail"
+                placeholder="Seu melhor e-mail"
+                aria-label="Digite seu e-mail para acesso antecipado"
+              />
+              <button class="btn btn-primary btn-lg" onclick="handleEmailSubmit('heroEmail')">
+                <i data-lucide="rocket" width="16" height="16"></i>
+                Quero acesso antecipado
+              </button>
+            </div>
+            <p class="form-note">
+              <i data-lucide="lock" width="13" height="13"></i>
+              Sem spam. Você entra na lista e é avisado primeiro.
+            </p>
+          </div>
+
+          <div class="hero-stats fade-in fade-in-delay-4">
+            <div class="stat-item">
+              <span class="stat-value">100%</span>
+              <span class="stat-label">Feito para salgadarias</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value">PIX</span>
+              <span class="stat-label">+ Cartão integrado</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-value">Offline</span>
+              <span class="stat-label">Funciona sem internet</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual POS mockup -->
+        <div class="hero-visual fade-in fade-in-delay-2">
+          <div class="mockup-shell">
+            <div class="mockup-topbar">
+              <span class="mock-dot red"></span>
+              <span class="mock-dot yellow"></span>
+              <span class="mock-dot green"></span>
+            </div>
+            <div class="mockup-content">
+              <div class="pos-header">
+                <span class="pos-title">Pedido #024</span>
+                <span class="pos-badge">Mesa 3 • Aberto</span>
+              </div>
+
+              <div class="pos-items">
+                <div class="pos-item">
+                  <div>
+                    <div class="pos-item-name">Coxinha de Frango</div>
+                    <div class="pos-item-meta">Qtd: 3 × R$ 5,00</div>
+                  </div>
+                  <div class="pos-item-price">R$ 15,00</div>
+                </div>
+                <div class="pos-item">
+                  <div>
+                    <div class="pos-item-name">Pastel de Queijo</div>
+                    <div class="pos-item-meta">Qtd: 2 × R$ 7,50</div>
+                  </div>
+                  <div class="pos-item-price">R$ 15,00</div>
+                </div>
+                <div class="pos-item">
+                  <div>
+                    <div class="pos-item-name">Suco de Laranja</div>
+                    <div class="pos-item-meta">Qtd: 1 × R$ 6,00</div>
+                  </div>
+                  <div class="pos-item-price">R$ 6,00</div>
+                </div>
+              </div>
+
+              <div class="pos-divider"></div>
+
+              <div class="pos-total-row">
+                <span class="pos-total-label">Total do pedido</span>
+                <span class="pos-total-value">R$ 36,00</span>
+              </div>
+
+              <div class="pos-payment-btns">
+                <div class="pos-pay-btn card">
+                  <i data-lucide="credit-card" width="14" height="14"></i>
+                  Cartão
+                </div>
+                <div class="pos-pay-btn pix">
+                  <i data-lucide="smartphone" width="14" height="14"></i>
+                  PIX
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROBLEM SECTION
+  ============================================ -->
+  <section class="section section-alt" id="problema">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">O Problema</span>
+        <h2>Gerenciar uma salgadaria<br>não deveria ser <span class="highlight">tão complicado</span></h2>
+        <p class="subtitle">A maioria dos donos de salgadaria lida todo dia com desorganização, erros e falta de controle. Isso custa tempo e dinheiro.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card fade-in fade-in-delay-1">
+          <div class="problem-icon">
+            <i data-lucide="file-warning" width="22" height="22"></i>
+          </div>
+          <h3>Pedidos Bagunçados</h3>
+          <p>Anotações em papel, erros na comanda e pedidos perdidos causam retrabalho e clientes insatisfeitos.</p>
+        </div>
+        <div class="problem-card fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <i data-lucide="package" width="22" height="22"></i>
+          </div>
+          <h3>Estoque no Escuro</h3>
+          <p>Sem controle do estoque você compra demais, deixa faltar ingrediente e perde dinheiro sem perceber.</p>
+        </div>
+        <div class="problem-card fade-in fade-in-delay-3">
+          <div class="problem-icon">
+            <i data-lucide="bar-chart-2" width="22" height="22"></i>
+          </div>
+          <h3>Sem Visão do Caixa</h3>
+          <p>Quanto você faturou hoje? Na semana? Sem um sistema você não sabe — e não consegue crescer.</p>
+        </div>
+        <div class="problem-card fade-in fade-in-delay-1">
+          <div class="problem-icon">
+            <i data-lucide="utensils-crossed" width="22" height="22"></i>
+          </div>
+          <h3>Cardápio Difícil de Gerenciar</h3>
+          <p>Atualizar preços e itens vira uma dor de cabeça quando não existe um sistema centralizado.</p>
+        </div>
+        <div class="problem-card fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <i data-lucide="clock" width="22" height="22"></i>
+          </div>
+          <h3>Hora do Rush Vira Caos</h3>
+          <p>No horário de pico, a desorganização dobra — e cada minuto perdido é cliente que vai embora.</p>
+        </div>
+        <div class="problem-card fade-in fade-in-delay-3">
+          <div class="problem-icon">
+            <i data-lucide="shield-alert" width="22" height="22"></i>
+          </div>
+          <h3>Sem Controle de Acesso</h3>
+          <p>Qualquer funcionário faz o que quer no sistema — cancelamentos indevidos, erros e prejuízo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SOLUTION SECTION
+  ============================================ -->
+  <section class="section" id="solucao">
+    <div class="container">
+      <div class="solution-grid">
+
+        <div>
+          <div class="fade-in">
+            <span class="section-label">A Solução</span>
+            <h2>Um sistema criado<br><span class="highlight">especialmente</span><br>para salgadarias</h2>
+            <p class="subtitle" style="margin-top:12px;">
+              Nosherp é uma plataforma modular — cada módulo resolve um problema específico da operação. Você pode usar um ou todos, do jeito que precisar.
+            </p>
+          </div>
+
+          <div class="solution-points fade-in fade-in-delay-1">
+            <div class="solution-point">
+              <div class="check-icon">
+                <i data-lucide="check" width="13" height="13"></i>
+              </div>
+              <div class="solution-point-text">
+                <strong>Módulos independentes</strong>
+                <p>Cada módulo funciona sozinho. Comece pelo PDV e expanda quando quiser.</p>
+              </div>
+            </div>
+            <div class="solution-point">
+              <div class="check-icon">
+                <i data-lucide="check" width="13" height="13"></i>
+              </div>
+              <div class="solution-point-text">
+                <strong>Sistema integrado</strong>
+                <p>Quando usados juntos, os módulos se comunicam e automatizam toda a operação.</p>
+              </div>
+            </div>
+            <div class="solution-point">
+              <div class="check-icon">
+                <i data-lucide="check" width="13" height="13"></i>
+              </div>
+              <div class="solution-point-text">
+                <strong>Feito para o seu negócio</strong>
+                <p>Não é um sistema genérico adaptado. É uma solução construída do zero para salgadarias.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="modular-badge-group fade-in fade-in-delay-2">
+            <span class="mod-badge active">PDV</span>
+            <span class="mod-badge">Cardápio</span>
+            <span class="mod-badge">Estoque</span>
+            <span class="mod-badge">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="solution-visual fade-in fade-in-delay-1">
+          <div class="sol-card">
+            <div class="sol-card-icon"><i data-lucide="shopping-cart" width="20" height="20"></i></div>
+            <div class="sol-card-text">
+              <strong>PDV — Ponto de Venda</strong>
+              <span>Pedidos rápidos, pagamento com PIX e cartão</span>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
+            <div class="sol-card-text">
+              <strong>Cardápio Digital</strong>
+              <span>Fotos, preços e fichas técnicas centralizadas</span>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-icon"><i data-lucide="package" width="20" height="20"></i></div>
+            <div class="sol-card-text">
+              <strong>Controle de Estoque</strong>
+              <span>Quantidades, fornecedores e alertas automáticos</span>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-icon"><i data-lucide="bar-chart-2" width="20" height="20"></i></div>
+            <div class="sol-card-text">
+              <strong>Dashboard de Resultados</strong>
+              <span>Faturamento e entradas de caixa em tempo real</span>
+            </div>
+          </div>
+          <div class="sol-card">
+            <div class="sol-card-icon"><i data-lucide="shield-check" width="20" height="20"></i></div>
+            <div class="sol-card-text">
+              <strong>Controle de Acesso</strong>
+              <span>Perfis e permissões por função do colaborador</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       HOW IT WORKS SECTION
+  ============================================ -->
+  <section class="section section-alt" id="como-funciona">
+    <div class="container">
+      <div class="section-header fade-in" style="margin:0 auto;text-align:center;max-width:600px;">
+        <span class="section-label">Como Funciona</span>
+        <h2>Da configuração ao<br><span class="highlight">controle total</span></h2>
+        <p class="subtitle">Em 4 passos simples você coloca o Nosherp para trabalhar na sua salgadaria.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card fade-in fade-in-delay-1">
+          <div class="step-number">1</div>
+          <h3>Cadastre seu Cardápio</h3>
+          <p>Adicione seus produtos com nome, preço, fotos e ficha técnica. Em minutos seu cardápio está pronto.</p>
+        </div>
+        <div class="step-card fade-in fade-in-delay-2">
+          <div class="step-number">2</div>
+          <h3>Registre Pedidos no PDV</h3>
+          <p>Use o caixa para criar e gerenciar pedidos com rapidez. Pagamento por cartão ou PIX sem complicação.</p>
+        </div>
+        <div class="step-card fade-in fade-in-delay-3">
+          <div class="step-number">3</div>
+          <h3>Controle o Estoque</h3>
+          <p>Acompanhe ingredientes e quantidade disponível. Saiba o que está acabando antes de faltar.</p>
+        </div>
+        <div class="step-card fade-in fade-in-delay-4">
+          <div class="step-number">4</div>
+          <h3>Veja os Resultados</h3>
+          <p>Acesse o dashboard e acompanhe o faturamento do dia, da semana e do mês em tempo real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MODULES SECTION
+  ============================================ -->
+  <section class="section" id="modulos">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Módulos</span>
+        <h2>Tudo que sua salgadaria<br><span class="highlight">precisa para crescer</span></h2>
+        <p class="subtitle">Cada módulo resolve um problema real da sua operação. Use separados ou todos integrados.</p>
+      </div>
+
+      <div class="modules-grid">
+
+        <!-- PDV -->
+        <div class="module-card featured fade-in fade-in-delay-1">
+          <div class="module-card-header">
+            <div class="module-icon">
+              <i data-lucide="shopping-cart" width="22" height="22"></i>
+            </div>
+            <span class="module-tag tag-first">Primeiro módulo</span>
+          </div>
+          <h3>PDV — Ponto de Venda</h3>
+          <p>O coração do Nosherp. Um caixa rápido, intuitivo e seguro feito para o ritmo de uma salgadaria.</p>
+          <div class="module-features">
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Criar pedidos com agilidade</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cancelamento controlado pelo admin</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Pagamento por cartão e PIX</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Fechamento automático do caixa</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Histórico de operações e logs</div>
+          </div>
+        </div>
+
+        <!-- Cardápio -->
+        <div class="module-card fade-in fade-in-delay-2">
+          <div class="module-card-header">
+            <div class="module-icon">
+              <i data-lucide="book-open" width="22" height="22"></i>
+            </div>
+            <span class="module-tag tag-soon">Em breve</span>
+          </div>
+          <h3>Cardápio</h3>
+          <p>Gerencie todos os seus produtos de forma centralizada, com fotos e fichas técnicas detalhadas.</p>
+          <div class="module-features">
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cadastro de produtos com ID automático</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Fotos e preços dos itens</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Ficha técnica opcional por produto</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Vínculo com itens do estoque</div>
+          </div>
+        </div>
+
+        <!-- Estoque -->
+        <div class="module-card fade-in fade-in-delay-1">
+          <div class="module-card-header">
+            <div class="module-icon">
+              <i data-lucide="layers" width="22" height="22"></i>
+            </div>
+            <span class="module-tag tag-soon">Em breve</span>
+          </div>
+          <h3>Estoque</h3>
+          <p>Controle ingredientes e insumos. Saiba o que tem disponível, o que está acabando e quem fornece.</p>
+          <div class="module-features">
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cadastro de itens de estoque</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Quantidade disponível em tempo real</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Registro de fornecedores</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Atualização automática com as vendas</div>
+          </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="module-card fade-in fade-in-delay-2">
+          <div class="module-card-header">
+            <div class="module-icon">
+              <i data-lucide="trending-up" width="22" height="22"></i>
+            </div>
+            <span class="module-tag tag-soon">Em breve</span>
+          </div>
+          <h3>Dashboard</h3>
+          <p>Visualize os resultados do seu negócio. Acompanhe o faturamento e tome decisões com dados reais.</p>
+          <div class="module-features">
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Entradas de caixa por período</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Acompanhamento de vendas</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Histórico detalhado de operações</div>
+            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Logs de ações do sistema</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BENEFITS SECTION
+  ============================================ -->
+  <section class="section section-alt" id="beneficios">
+    <div class="container">
+      <div class="section-header fade-in" style="margin:0 auto;text-align:center;max-width:600px;">
+        <span class="section-label">Benefícios</span>
+        <h2>O que muda no seu<br><span class="highlight">negócio com o Nosherp</span></h2>
+        <p class="subtitle">Mais organização, menos erro, mais lucro. É isso que o Nosherp entrega.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card fade-in fade-in-delay-1">
+          <div class="benefit-icon">
+            <i data-lucide="zap" width="24" height="24"></i>
+          </div>
+          <h3>Atendimento Mais Rápido</h3>
+          <p>Registre pedidos em segundos e elimine a fila. Menos espera, mais satisfação e mais vendas.</p>
+        </div>
+        <div class="benefit-card fade-in fade-in-delay-2">
+          <div class="benefit-icon">
+            <i data-lucide="check-circle" width="24" height="24"></i>
+          </div>
+          <h3>Menos Erros Operacionais</h3>
+          <p>Chega de pedidos errados, cancelamentos indevidos e confusão no caixa. Tudo registrado e controlado.</p>
+        </div>
+        <div class="benefit-card fade-in fade-in-delay-3">
+          <div class="benefit-icon">
+            <i data-lucide="package" width="24" height="24"></i>
+          </div>
+          <h3>Estoque Sempre Sob Controle</h3>
+          <p>Saiba o que tem e o que está acabando. Evite desperdício e nunca mais perca venda por falta de ingrediente.</p>
+        </div>
+        <div class="benefit-card fade-in fade-in-delay-1">
+          <div class="benefit-icon">
+            <i data-lucide="eye" width="24" height="24"></i>
+          </div>
+          <h3>Visão Clara do Faturamento</h3>
+          <p>Acompanhe quanto você está ganhando em tempo real. Tome decisões com dados, não com achismos.</p>
+        </div>
+        <div class="benefit-card fade-in fade-in-delay-2">
+          <div class="benefit-icon">
+            <i data-lucide="shield-check" width="24" height="24"></i>
+          </div>
+          <h3>Operação Segura e Confiável</h3>
+          <p>Controle de acesso por perfil, backup automático e logs completos de todas as operações.</p>
+        </div>
+        <div class="benefit-card fade-in fade-in-delay-3">
+          <div class="benefit-icon">
+            <i data-lucide="wifi-off" width="24" height="24"></i>
+          </div>
+          <h3>Funciona Offline</h3>
+          <p>Internet caiu? Sem problema. O Nosherp continua funcionando e sincroniza quando a conexão voltar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EARLY ACCESS SECTION
+  ============================================ -->
+  <section class="section early-access" id="acesso">
+    <div class="container">
+      <div class="early-access-inner fade-in">
+        <span class="section-label">Acesso Antecipado</span>
+        <h2>Seja um dos primeiros<br>a testar o <span class="highlight">Nosherp</span></h2>
         <p class="subtitle">
-            Uma nova geração de gestão para pastelarias e salgadarias.
-            Mais controle, mais organização e decisões baseadas em dados.
+          O Nosherp está em desenvolvimento e os primeiros cadastrados terão acesso antes de todo mundo.
+          Entre na lista, garanta sua vaga e ajude a moldar o produto.
         </p>
 
-        <p>
-            Estamos desenvolvendo um sistema criado especificamente para negócios de salgados.
-            Participe da lista de acesso antecipado e acompanhe o desenvolvimento.
+        <div class="early-form">
+          <input
+            type="email"
+            class="email-input"
+            id="earlyEmail"
+            placeholder="Seu melhor e-mail"
+            aria-label="E-mail para acesso antecipado"
+          />
+          <button class="btn btn-primary btn-lg" onclick="handleEmailSubmit('earlyEmail')">
+            <i data-lucide="rocket" width="16" height="16"></i>
+            Entrar na lista de acesso antecipado
+          </button>
+        </div>
+
+        <p class="early-note">
+          <i data-lucide="lock" width="13" height="13"></i>
+          Sem spam. Apenas novidades sobre o lançamento do Nosherp.
         </p>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-form">
-            <input type="email" placeholder="Seu melhor email">
-            <button>Entrar na lista</button>
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Nos<span>herp</span></div>
+          <p class="footer-tagline">PDV e gestão para salgadarias e pastelarias.</p>
         </div>
+        <ul class="footer-links">
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#solucao">Solução</a></li>
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#acesso">Acesso</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Nosherp. Todos os direitos reservados.</p>
+        <a href="mailto:contato@nosherp.com.br" class="footer-email">
+          <i data-lucide="mail" width="13" height="13"></i>
+          contato@nosherp.com.br
+        </a>
+      </div>
+    </div>
+  </footer>
 
-    </section>
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <i data-lucide="check-circle" width="18" height="18"></i>
+    <span id="toastMessage">E-mail cadastrado com sucesso!</span>
+  </div>
 
-    <section class="section">
-        <div class="container">
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================ -->
+  <script>
+    // Inicializa Lucide
+    lucide.createIcons();
 
-            <h2>O Problema</h2>
+    /* ---- THEME TOGGLE ---- */
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
 
-            <p>
-                Grande parte das salgadarias e pastelarias ainda gerenciam pedidos, estoque e vendas de forma manual ou
-                utilizando sistemas genéricos que não foram criados para a realidade desse tipo de negócio.
-            </p>
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('nosherp-theme', theme);
+      themeIcon.setAttribute('data-lucide', theme === 'dark' ? 'sun' : 'moon');
+      lucide.createIcons();
+    }
 
-            <p>
-                Isso gera perda de controle financeiro, desperdício de ingredientes e dificuldade para entender o
-                desempenho real da empresa.
-            </p>
+    // Carrega tema salvo
+    const savedTheme = localStorage.getItem('nosherp-theme') || 'dark';
+    setTheme(savedTheme);
 
-        </div>
-    </section>
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
 
-    <section class="section">
-        <div class="container">
+    /* ---- MOBILE MENU ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-            <h2>Nossa Solução</h2>
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
 
-            <p>
-                Estamos criando um sistema de gestão pensado especificamente para o funcionamento de salgadarias e
-                pastelarias.
-                O objetivo é tornar a logística do negócio mais inteligente, simples e organizada.
-            </p>
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
 
-            <p>
-                O primeiro passo será um PDV moderno e eficiente.
-                A partir dele, evoluiremos gradualmente para um ERP completo e posteriormente para uma plataforma de
-                inteligência empresarial.
-            </p>
+    /* ---- EMAIL SUBMIT ---- */
+    function handleEmailSubmit(inputId) {
+      const input = document.getElementById(inputId);
+      const email = input.value.trim();
 
-        </div>
-    </section>
+      if (!email) {
+        input.focus();
+        input.style.borderColor = '#FF5F2F';
+        setTimeout(() => { input.style.borderColor = ''; }, 1500);
+        return;
+      }
 
-    <section class="section">
-        <div class="container">
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast('Por favor, insira um e-mail válido.', true);
+        return;
+      }
 
-            <h2>Funcionalidades do MVP</h2>
+      input.value = '';
+      showToast('Você entrou na lista! Em breve entraremos em contato.');
+    }
 
-            <div class="features">
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.textContent = message;
+      toast.style.borderColor = isError ? '#FF5F5F' : '';
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3500);
+    }
 
-                <div class="feature">
-                    <i data-feather="shopping-cart"></i>
-                    <h3>Gestão de Pedidos</h3>
-                    <p>
-                        Criação, registro e controle completo de pedidos com segurança e histórico de operações.
-                    </p>
-                </div>
+    /* ---- SCROLL ANIMATIONS ---- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
 
-                <div class="feature">
-                    <i data-feather="book-open"></i>
-                    <h3>Gestão de Cardápio</h3>
-                    <p>
-                        Cadastro completo dos itens vendidos, com fotos, preços e ficha técnica integrada ao estoque.
-                    </p>
-                </div>
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-                <div class="feature">
-                    <i data-feather="archive"></i>
-                    <h3>Controle de Estoque</h3>
-                    <p>
-                        Registro dos ingredientes e produtos utilizados, permitindo controle preciso dos insumos.
-                    </p>
-                </div>
+    /* ---- STICKY HEADER SHADOW ---- */
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 20) {
+        header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.15)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    });
 
-                <div class="feature">
-                    <i data-feather="bar-chart-2"></i>
-                    <h3>Dashboard Financeiro</h3>
-                    <p>
-                        Visualização simples do caixa e acompanhamento das vendas realizadas no dia.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <i data-feather="wifi-off"></i>
-                    <h3>Funcionamento Offline</h3>
-                    <p>
-                        O sistema continua funcionando mesmo sem internet, evitando interrupções nas vendas.
-                    </p>
-                </div>
-
-                <div class="feature">
-                    <i data-feather="shield"></i>
-                    <h3>Segurança e Controle</h3>
-                    <p>
-                        Login seguro, controle de permissões, logs de operações e backups automáticos.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container vision">
-
-            <h2>Visão de Futuro</h2>
-
-            <p>
-                Este projeto nasce como um sistema de vendas, mas foi projetado para crescer.
-            </p>
-
-            <p>
-                A evolução do sistema seguirá três etapas estratégicas:
-            </p>
-
-            <div class="steps">
-
-                <div class="step">
-                    <h3>Etapa 1</h3>
-                    <p>
-                        Criação de um PDV especializado para salgadarias e pastelarias.
-                    </p>
-                </div>
-
-                <div class="step">
-                    <h3>Etapa 2</h3>
-                    <p>
-                        Expansão para um ERP modular com gestão completa do negócio.
-                    </p>
-                </div>
-
-                <div class="step">
-                    <h3>Etapa 3</h3>
-                    <p>
-                        Implementação de Business Intelligence para análise avançada de dados.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="cta">
-
-        <h2>Participe do Acesso Antecipado</h2>
-
-        <p>
-            Estamos construindo este sistema junto com os primeiros usuários.
-            Entre para a lista e seja avisado quando o MVP estiver disponível.
-        </p>
-
-        <br>
-
-        <input type="email" placeholder="Seu email">
-        <button>Quero participar</button>
-
-    </section>
-
-    <footer>
-
-        <p>
-            Projeto em desenvolvimento • Sistema de gestão para salgadarias
-        </p>
-
-    </footer>
-
-    <script>
-        feather.replace()
-    </script>
-
+    /* ---- ENTER KEY on email inputs ---- */
+    document.getElementById('heroEmail').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleEmailSubmit('heroEmail');
+    });
+    document.getElementById('earlyEmail').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleEmailSubmit('earlyEmail');
+    });
+  </script>
 </body>
-
 </html>

@@ -1,593 +1,714 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nosherp — PDV para Salgadarias e Pastelarias</title>
+  <title>Almoçu — Gestão inteligente para lanchonetes</title>
+  <meta name="description" content="Sistema de gestão simples, automatizado e inteligente para lanchonetes e restaurantes. Menos erros, mais lucro." />
 
-  <!-- Fonts -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Skip link acessibilidade -->
+  <a class="skip-link" href="#main">Ir ao conteúdo principal</a>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Khand:wght@700&family=Jost:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Solar Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ============================================
-       HEADER
-  ============================================ -->
+  <!-- ===========================
+       HEADER / NAV
+  ============================ -->
   <header class="header" id="header">
-    <div class="container">
-      <nav class="nav">
-        <a href="#" class="logo">Nosh<span>erp</span></a>
+    <div class="container header__inner">
 
-        <ul class="nav-links">
-          <li><a href="#problema">Problema</a></li>
-          <li><a href="#solucao">Solução</a></li>
-          <li><a href="#como-funciona">Como Funciona</a></li>
-          <li><a href="#modulos">Módulos</a></li>
-          <li><a href="#acesso">Acesso Antecipado</a></li>
-        </ul>
+      <a href="#" class="logo" aria-label="Almoçu — Página inicial">
+        <span class="logo__icon" aria-hidden="true">
+          <iconify-icon icon="solar:chef-hat-bold" width="22"></iconify-icon>
+        </span>
+        <span class="logo__text">Almoçu</span>
+      </a>
 
-        <div class="nav-actions">
-          <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-            <i data-lucide="sun" width="18" height="18" id="themeIcon"></i>
-          </button>
-          <a href="#acesso" class="btn btn-primary" style="padding:10px 20px;font-size:12px;">
-            Entrar na lista
-          </a>
-          <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#problema" class="nav__link">Problema</a>
+        <a href="#solucao" class="nav__link">Solução</a>
+        <a href="#modulos" class="nav__link">Módulos</a>
+        <a href="#roadmap" class="nav__link">Roadmap</a>
+        <a href="#prototipo" class="nav__link">Protótipo</a>
       </nav>
 
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#problema" onclick="closeMobile()">Problema</a>
-        <a href="#solucao" onclick="closeMobile()">Solução</a>
-        <a href="#como-funciona" onclick="closeMobile()">Como Funciona</a>
-        <a href="#modulos" onclick="closeMobile()">Módulos</a>
-        <a href="#acesso" onclick="closeMobile()">Acesso Antecipado</a>
+      <div class="header__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema claro/escuro">
+          <iconify-icon icon="solar:sun-bold" class="icon-sun" width="18" aria-hidden="true"></iconify-icon>
+          <iconify-icon icon="solar:moon-bold" class="icon-moon" width="18" aria-hidden="true"></iconify-icon>
+        </button>
+        <a href="#prototipo" class="btn btn--primary btn--sm">Ver protótipo</a>
       </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <iconify-icon icon="solar:hamburger-menu-bold" width="22" aria-hidden="true"></iconify-icon>
+      </button>
+
+    </div>
+
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="#problema" class="mobile-nav__link">Problema</a>
+      <a href="#solucao" class="mobile-nav__link">Solução</a>
+      <a href="#modulos" class="mobile-nav__link">Módulos</a>
+      <a href="#roadmap" class="mobile-nav__link">Roadmap</a>
+      <a href="#prototipo" class="mobile-nav__link">Protótipo</a>
     </div>
   </header>
 
-  <!-- ============================================
-       HERO SECTION
-  ============================================ -->
-  <section class="hero" id="inicio">
-    <div class="container">
-      <div class="hero-grid">
+  <main id="main">
 
-        <!-- Texto hero -->
-        <div class="hero-content">
-          <div class="hero-eyebrow fade-in">
-            <span class="dot"></span>
-            <span>Acesso antecipado disponível</span>
+    <!-- ===========================
+         HERO
+    ============================ -->
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+
+        <div class="hero__content">
+          <div class="badge reveal">
+            <iconify-icon icon="solar:rocket-bold" width="12" aria-hidden="true"></iconify-icon>
+            Em desenvolvimento · Protótipo disponível
           </div>
 
-          <h1 class="hero-headline fade-in fade-in-delay-1">
-            O PDV feito para<br>
-            <span class="line2">salgadarias que<br>vendem de verdade</span>
+          <h1 class="hero__title reveal reveal--delay-1">
+            Sua lanchonete<br />
+            <span class="text-highlight">organizada</span><br />
+            do pedido ao lucro
           </h1>
 
-          <p class="subtitle hero-subtitle fade-in fade-in-delay-2">
-            Nosherp automatiza pedidos, organiza seu cardápio e controla seu estoque — tudo em um sistema criado especialmente para sua salgadaria ou pastelaria.
+          <p class="hero__subtitle reveal reveal--delay-2">
+            Chega de pedido errado, estoque no prejuízo e decisão no chute.<br />
+            O Almoçu simplifica sua operação e te dá os dados para crescer.
           </p>
 
-          <div class="hero-form fade-in fade-in-delay-3">
-            <div class="hero-form-row">
-              <input
-                type="email"
-                class="email-input"
-                id="heroEmail"
-                placeholder="Seu melhor e-mail"
-                aria-label="Digite seu e-mail para acesso antecipado"
-              />
-              <button class="btn btn-primary btn-lg" onclick="handleEmailSubmit('heroEmail')">
-                <i data-lucide="rocket" width="16" height="16"></i>
-                Quero acesso antecipado
-              </button>
+          <div class="hero__actions reveal reveal--delay-3">
+            <a href="https://www.figma.com/proto/HsCnQrsbUdS3UfWMzkrgMk/Projeto-Integrador-Sem-Nome?node-id=2159-1441&p=f&t=KcRXR3CeZATkitdw-0&scaling=scale-down&content-scaling=fixed&page-id=2159%3A976&starting-point-node-id=2159%3A1441" target="_blank" rel="noopener" class="btn btn--primary btn--shimmer">
+              <iconify-icon icon="solar:figma-bold" width="18" aria-hidden="true"></iconify-icon>
+              Ver protótipo no Figma
+            </a>
+            <a href="#solucao" class="btn btn--ghost">
+              Como funciona
+              <iconify-icon icon="solar:arrow-down-bold" width="16" aria-hidden="true"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal reveal--delay-2" aria-hidden="true">
+          <div class="dashboard-mock">
+            <div class="mock__header">
+              <div class="mock__dot mock__dot--red"></div>
+              <div class="mock__dot mock__dot--yellow"></div>
+              <div class="mock__dot mock__dot--green"></div>
+              <span class="mock__title">Dashboard · Almoçu</span>
             </div>
-            <p class="form-note">
-              <i data-lucide="lock" width="13" height="13"></i>
-              Sem spam. Você entra na lista e é avisado primeiro.
+            <div class="mock__body">
+              <div class="mock__row">
+                <div class="mock__stat">
+                  <span class="mock__stat-label">Pedidos hoje</span>
+                  <span class="mock__stat-value" data-count="142">0</span>
+                </div>
+                <div class="mock__stat">
+                  <span class="mock__stat-label">Receita</span>
+                  <span class="mock__stat-value" data-prefix="R$" data-count="3847">R$0</span>
+                </div>
+                <div class="mock__stat">
+                  <span class="mock__stat-label">Itens no estoque</span>
+                  <span class="mock__stat-value" data-count="58">0</span>
+                </div>
+              </div>
+              <div class="mock__chart">
+                <div class="mock__chart-label">Vendas da semana</div>
+                <div class="mock__bars">
+                  <div class="mock__bar" style="--h:55%"><span>Seg</span></div>
+                  <div class="mock__bar" style="--h:70%"><span>Ter</span></div>
+                  <div class="mock__bar" style="--h:45%"><span>Qua</span></div>
+                  <div class="mock__bar" style="--h:90%"><span>Qui</span></div>
+                  <div class="mock__bar mock__bar--active" style="--h:78%"><span>Sex</span></div>
+                  <div class="mock__bar" style="--h:60%"><span>Sáb</span></div>
+                  <div class="mock__bar" style="--h:40%"><span>Dom</span></div>
+                </div>
+              </div>
+              <div class="mock__orders">
+                <div class="mock__order-label">Pedidos recentes</div>
+                <div class="mock__order-item">
+                  <span class="mock__order-id">#142</span>
+                  <span class="mock__order-name">X-Burguer + Fritas</span>
+                  <span class="mock__status mock__status--done">Pronto</span>
+                </div>
+                <div class="mock__order-item">
+                  <span class="mock__order-id">#141</span>
+                  <span class="mock__order-name">Misto Quente</span>
+                  <span class="mock__status mock__status--prep">Preparando</span>
+                </div>
+                <div class="mock__order-item">
+                  <span class="mock__order-id">#140</span>
+                  <span class="mock__order-name">Açaí 500ml</span>
+                  <span class="mock__status mock__status--wait">Aguardando</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===========================
+         PROBLEMA
+    ============================ -->
+    <section class="section section--alt" id="problema">
+      <div class="container">
+
+        <div class="section__header reveal">
+          <p class="overline">
+            <iconify-icon icon="solar:danger-triangle-bold" width="14" aria-hidden="true"></iconify-icon>
+            O problema
+          </p>
+          <h2 class="section__title">
+            O negócio cresceu.<br />
+            A gestão <span class="text-highlight">não acompanhou.</span>
+          </h2>
+          <p class="section__subtitle">
+            A maioria das lanchonetes começa pequena, com gestão no feeling. Funciona até crescer — e aí o caos aparece.
+          </p>
+        </div>
+
+        <div class="problem__grid">
+
+          <div class="problem-card reveal reveal--delay-1">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:bill-cross-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <h3 class="problem-card__title">Pedidos errados</h3>
+            <p class="problem-card__text">
+              Anotações à mão, comunicação falha com a cozinha e pedidos que "somem". Cada erro paga do seu bolso e ainda estraga a experiência do cliente.
             </p>
           </div>
 
-          <div class="hero-stats fade-in fade-in-delay-4">
-            <div class="stat-item">
-              <span class="stat-value">100%</span>
-              <span class="stat-label">Feito para salgadarias</span>
+          <div class="problem-card reveal reveal--delay-2">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:clock-circle-bold" width="28" aria-hidden="true"></iconify-icon>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-value">PIX</span>
-              <span class="stat-label">+ Cartão integrado</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-value">Offline</span>
-              <span class="stat-label">Funciona sem internet</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Visual POS mockup -->
-        <div class="hero-visual fade-in fade-in-delay-2">
-          <div class="mockup-shell">
-            <div class="mockup-topbar">
-              <span class="mock-dot red"></span>
-              <span class="mock-dot yellow"></span>
-              <span class="mock-dot green"></span>
-            </div>
-            <div class="mockup-content">
-              <div class="pos-header">
-                <span class="pos-title">Pedido #024</span>
-                <span class="pos-badge">Mesa 3 • Aberto</span>
-              </div>
-
-              <div class="pos-items">
-                <div class="pos-item">
-                  <div>
-                    <div class="pos-item-name">Coxinha de Frango</div>
-                    <div class="pos-item-meta">Qtd: 3 × R$ 5,00</div>
-                  </div>
-                  <div class="pos-item-price">R$ 15,00</div>
-                </div>
-                <div class="pos-item">
-                  <div>
-                    <div class="pos-item-name">Pastel de Queijo</div>
-                    <div class="pos-item-meta">Qtd: 2 × R$ 7,50</div>
-                  </div>
-                  <div class="pos-item-price">R$ 15,00</div>
-                </div>
-                <div class="pos-item">
-                  <div>
-                    <div class="pos-item-name">Suco de Laranja</div>
-                    <div class="pos-item-meta">Qtd: 1 × R$ 6,00</div>
-                  </div>
-                  <div class="pos-item-price">R$ 6,00</div>
-                </div>
-              </div>
-
-              <div class="pos-divider"></div>
-
-              <div class="pos-total-row">
-                <span class="pos-total-label">Total do pedido</span>
-                <span class="pos-total-value">R$ 36,00</span>
-              </div>
-
-              <div class="pos-payment-btns">
-                <div class="pos-pay-btn card">
-                  <i data-lucide="credit-card" width="14" height="14"></i>
-                  Cartão
-                </div>
-                <div class="pos-pay-btn pix">
-                  <i data-lucide="smartphone" width="14" height="14"></i>
-                  PIX
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       PROBLEM SECTION
-  ============================================ -->
-  <section class="section section-alt" id="problema">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">O Problema</span>
-        <h2>Gerenciar uma salgadaria<br>não deveria ser <span class="highlight">tão complicado</span></h2>
-        <p class="subtitle">A maioria dos donos de salgadaria lida todo dia com desorganização, erros e falta de controle. Isso custa tempo e dinheiro.</p>
-      </div>
-
-      <div class="problems-grid">
-        <div class="problem-card fade-in fade-in-delay-1">
-          <div class="problem-icon">
-            <i data-lucide="file-warning" width="22" height="22"></i>
-          </div>
-          <h3>Pedidos Bagunçados</h3>
-          <p>Anotações em papel, erros na comanda e pedidos perdidos causam retrabalho e clientes insatisfeitos.</p>
-        </div>
-        <div class="problem-card fade-in fade-in-delay-2">
-          <div class="problem-icon">
-            <i data-lucide="package" width="22" height="22"></i>
-          </div>
-          <h3>Estoque no Escuro</h3>
-          <p>Sem controle do estoque você compra demais, deixa faltar ingrediente e perde dinheiro sem perceber.</p>
-        </div>
-        <div class="problem-card fade-in fade-in-delay-3">
-          <div class="problem-icon">
-            <i data-lucide="bar-chart-2" width="22" height="22"></i>
-          </div>
-          <h3>Sem Visão do Caixa</h3>
-          <p>Quanto você faturou hoje? Na semana? Sem um sistema você não sabe — e não consegue crescer.</p>
-        </div>
-        <div class="problem-card fade-in fade-in-delay-1">
-          <div class="problem-icon">
-            <i data-lucide="utensils-crossed" width="22" height="22"></i>
-          </div>
-          <h3>Cardápio Difícil de Gerenciar</h3>
-          <p>Atualizar preços e itens vira uma dor de cabeça quando não existe um sistema centralizado.</p>
-        </div>
-        <div class="problem-card fade-in fade-in-delay-2">
-          <div class="problem-icon">
-            <i data-lucide="clock" width="22" height="22"></i>
-          </div>
-          <h3>Hora do Rush Vira Caos</h3>
-          <p>No horário de pico, a desorganização dobra — e cada minuto perdido é cliente que vai embora.</p>
-        </div>
-        <div class="problem-card fade-in fade-in-delay-3">
-          <div class="problem-icon">
-            <i data-lucide="shield-alert" width="22" height="22"></i>
-          </div>
-          <h3>Sem Controle de Acesso</h3>
-          <p>Qualquer funcionário faz o que quer no sistema — cancelamentos indevidos, erros e prejuízo.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       SOLUTION SECTION
-  ============================================ -->
-  <section class="section" id="solucao">
-    <div class="container">
-      <div class="solution-grid">
-
-        <div>
-          <div class="fade-in">
-            <span class="section-label">A Solução</span>
-            <h2>Um sistema criado<br><span class="highlight">especialmente</span><br>para salgadarias</h2>
-            <p class="subtitle" style="margin-top:12px;">
-              Nosherp é uma plataforma modular — cada módulo resolve um problema específico da operação. Você pode usar um ou todos, do jeito que precisar.
+            <h3 class="problem-card__title">Atrasos na entrega</h3>
+            <p class="problem-card__text">
+              Sem visibilidade do status de cada pedido, o atendimento improvisa. O cliente espera, reclama e, muitas vezes, não volta.
             </p>
           </div>
 
-          <div class="solution-points fade-in fade-in-delay-1">
-            <div class="solution-point">
-              <div class="check-icon">
-                <i data-lucide="check" width="13" height="13"></i>
+          <div class="problem-card reveal reveal--delay-3">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:box-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <h3 class="problem-card__title">Estoque no prejuízo</h3>
+            <p class="problem-card__text">
+              Ingrediente vencendo na geladeira ou acabando no pico do almoço. Sem controle, você perde dinheiro nos dois extremos.
+            </p>
+          </div>
+
+          <div class="problem-card reveal reveal--delay-1">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:chart-2-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <h3 class="problem-card__title">Decisões no escuro</h3>
+            <p class="problem-card__text">
+              Qual prato mais vende? Qual horário é mais lucrativo? Sem dados, o dono chuta — e o negócio paga a conta dos erros.
+            </p>
+          </div>
+
+          <div class="problem-card reveal reveal--delay-2">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:wallet-money-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <h3 class="problem-card__title">Margem apertada</h3>
+            <p class="problem-card__text">
+              Com mais de 20% dos restaurantes brasileiros operando no vermelho, cada real desperdiçado é a diferença entre fechar ou crescer.
+            </p>
+          </div>
+
+          <div class="problem-card reveal reveal--delay-3">
+            <div class="problem-card__icon">
+              <iconify-icon icon="solar:users-group-two-rounded-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <h3 class="problem-card__title">Equipe sem direção</h3>
+            <p class="problem-card__text">
+              Sem processos claros, cada funcionário inventa sua própria rotina. O resultado é inconsistência, retrabalho e dono resolvendo tudo.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="problem__impact reveal">
+          <div class="impact-stat">
+            <div class="impact-stat__number_suffix">
+              <span class="impact-stat__number" data-count="78">0</span>
+	            <span class="impact-stat__suffix"> %</span>
+            </div>
+            <span class="impact-stat__label">das lanchonetes são negócios de 1 a 3 unidades, geridos de forma informal</span>
+          </div>
+          <div class="impact-divider" aria-hidden="true"></div>
+          <div class="impact-stat">
+            <div class="impact-stat__number_suffix">
+              <span class="impact-stat__number" data-count="20">0</span>
+              <span class="impact-stat__suffix">%+</span>
+            </div>
+            <span class="impact-stat__label">dos restaurantes brasileiros operam no vermelho hoje</span>
+          </div>
+          <div class="impact-divider" aria-hidden="true"></div>
+          <div class="impact-stat">
+            <div class="impact-stat__number_suffix">
+              <span class="impact-stat__number" data-count="74">0</span>
+              <span class="impact-stat__suffix">%</span>
+            </div>
+            <span class="impact-stat__label">é a rotatividade anual de funcionários no setor de alimentação</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===========================
+         SOLUÇÃO
+    ============================ -->
+    <section class="section" id="solucao">
+      <div class="container">
+
+        <div class="section__header reveal">
+          <p class="overline">
+            <iconify-icon icon="solar:lightbulb-bold" width="14" aria-hidden="true"></iconify-icon>
+            A solução
+          </p>
+          <h2 class="section__title">
+            Gestão simples.<br />
+            Operação <span class="text-highlight">inteligente.</span>
+          </h2>
+          <p class="section__subtitle">
+            O Almoçu foi desenhado especificamente para quem não tem tempo de aprender software complexo — mas precisa de um negócio que funcione.
+          </p>
+        </div>
+
+        <div class="qualities__grid">
+
+          <div class="quality-card reveal reveal--delay-1">
+            <div class="quality-card__icon-wrap">
+              <iconify-icon icon="solar:target-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <div class="quality-card__body">
+              <p class="overline overline--sm">Princípio 01</p>
+              <h3 class="quality-card__title">Simples</h3>
+              <p class="quality-card__text">
+                Poucos recursos, mas os certos. Cada tela tem um propósito, cada botão tem uma função. Sem curva de aprendizado, sem manual.
+              </p>
+            </div>
+          </div>
+
+          <div class="quality-card reveal reveal--delay-2">
+            <div class="quality-card__icon-wrap">
+              <iconify-icon icon="solar:layers-minimalistic-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <div class="quality-card__body">
+              <p class="overline overline--sm">Princípio 02</p>
+              <h3 class="quality-card__title">Flexível</h3>
+              <p class="quality-card__text">
+                Lanchonete de bairro, hamburgueria artesanal ou doceria — o sistema se adapta ao seu negócio, não o contrário.
+              </p>
+            </div>
+          </div>
+
+          <div class="quality-card reveal reveal--delay-3">
+            <div class="quality-card__icon-wrap">
+              <iconify-icon icon="solar:cpu-bolt-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <div class="quality-card__body">
+              <p class="overline overline--sm">Princípio 03</p>
+              <h3 class="quality-card__title">Automatizado</h3>
+              <p class="quality-card__text">
+                Estoque atualiza sozinho a cada venda. Backup roda automático. Pedidos das plataformas chegam direto no sistema. Você foca no negócio.
+              </p>
+            </div>
+          </div>
+
+          <div class="quality-card reveal reveal--delay-1">
+            <div class="quality-card__icon-wrap">
+              <iconify-icon icon="solar:graph-new-up-bold" width="28" aria-hidden="true"></iconify-icon>
+            </div>
+            <div class="quality-card__body">
+              <p class="overline overline--sm">Princípio 04</p>
+              <h3 class="quality-card__title">Inteligente</h3>
+              <p class="quality-card__text">
+                A dashboard consolida tudo e transforma dados brutos em insights reais: o que vender mais, quando repor, onde cortar custo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="transformation reveal">
+          <div class="transformation__before">
+            <p class="transformation__label">Antes do Almoçu</p>
+            <ul class="transformation__list transformation__list--bad">
+              <li><iconify-icon icon="solar:close-circle-bold" width="16" aria-hidden="true"></iconify-icon> Caderninho e planilha solta</li>
+              <li><iconify-icon icon="solar:close-circle-bold" width="16" aria-hidden="true"></iconify-icon> Pedido perdido na cozinha</li>
+              <li><iconify-icon icon="solar:close-circle-bold" width="16" aria-hidden="true"></iconify-icon> Estoque no chute</li>
+              <li><iconify-icon icon="solar:close-circle-bold" width="16" aria-hidden="true"></iconify-icon> Dono sem tempo para pensar</li>
+            </ul>
+          </div>
+          <div class="transformation__arrow" aria-hidden="true">
+            <iconify-icon icon="solar:arrow-right-bold" width="32"></iconify-icon>
+          </div>
+          <div class="transformation__after">
+            <p class="transformation__label">Com o Almoçu</p>
+            <ul class="transformation__list transformation__list--good">
+              <li><iconify-icon icon="solar:check-circle-bold" width="16" aria-hidden="true"></iconify-icon> Tudo centralizado em um lugar</li>
+              <li><iconify-icon icon="solar:check-circle-bold" width="16" aria-hidden="true"></iconify-icon> Cozinha sempre informada</li>
+              <li><iconify-icon icon="solar:check-circle-bold" width="16" aria-hidden="true"></iconify-icon> Estoque sempre atualizado</li>
+              <li><iconify-icon icon="solar:check-circle-bold" width="16" aria-hidden="true"></iconify-icon> Dados para decidir melhor</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===========================
+         MÓDULOS
+    ============================ -->
+    <section class="section section--alt" id="modulos">
+      <div class="container">
+
+        <div class="section__header reveal">
+          <p class="overline">
+            <iconify-icon icon="solar:widget-bold" width="14" aria-hidden="true"></iconify-icon>
+            Módulos do sistema
+          </p>
+          <h2 class="section__title">
+            Tudo que você precisa,<br />
+            <span class="text-highlight">nada que não precisa.</span>
+          </h2>
+          <p class="section__subtitle">
+            Cinco módulos integrados que cobrem toda a operação — do pedido ao relatório.
+          </p>
+        </div>
+
+        <div class="modules__grid">
+
+          <div class="module-card reveal reveal--delay-1">
+            <div class="module-card__icon-wrap">
+              <iconify-icon icon="solar:cash-out-bold" width="32" aria-hidden="true"></iconify-icon>
+            </div>
+            <p class="overline overline--sm">Módulo 01</p>
+            <h3 class="module-card__title">PDV</h3>
+            <p class="module-card__text">
+              Registre, edite e cancele pedidos com agilidade. Integração com maquininha, Pix, iFood e WhatsApp — tudo em uma tela só.
+            </p>
+            <ul class="module-card__features">
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Maquininha e Pix integrados</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> iFood, WhatsApp e outros apps</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Controle por permissão de cargo</li>
+            </ul>
+          </div>
+
+          <div class="module-card reveal reveal--delay-2">
+            <div class="module-card__icon-wrap">
+              <iconify-icon icon="solar:list-check-bold" width="32" aria-hidden="true"></iconify-icon>
+            </div>
+            <p class="overline overline--sm">Módulo 02</p>
+            <h3 class="module-card__title">Pedidos</h3>
+            <p class="module-card__text">
+              Visibilidade em tempo real de todos os pedidos em andamento. A cozinha vê, o atendente acompanha, o cliente é informado.
+            </p>
+            <ul class="module-card__features">
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Atualização em tempo real</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Status: aguardando → preparando → pronto</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Histórico completo de pedidos</li>
+            </ul>
+          </div>
+
+          <div class="module-card reveal reveal--delay-3">
+            <div class="module-card__icon-wrap">
+              <iconify-icon icon="solar:book-2-bold" width="32" aria-hidden="true"></iconify-icon>
+            </div>
+            <p class="overline overline--sm">Módulo 03</p>
+            <h3 class="module-card__title">Cardápio</h3>
+            <p class="module-card__text">
+              Crie e gerencie seu menu com facilidade. Integre com o estoque para saber exatamente o que pode ser vendido agora.
+            </p>
+            <ul class="module-card__features">
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Cadastro completo de itens</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Ficha técnica com ingredientes</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Integração com estoque</li>
+            </ul>
+          </div>
+
+          <div class="module-card reveal reveal--delay-1">
+            <div class="module-card__icon-wrap">
+              <iconify-icon icon="solar:box-bold" width="32" aria-hidden="true"></iconify-icon>
+            </div>
+            <p class="overline overline--sm">Módulo 04</p>
+            <h3 class="module-card__title">Estoque</h3>
+            <p class="module-card__text">
+              Controle de insumos atualizado automaticamente a cada venda. Leitura de XML de nota fiscal para facilitar entradas.
+            </p>
+            <ul class="module-card__features">
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Atualização automática por venda</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Importação via XML de NF-e</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Alertas de estoque baixo</li>
+            </ul>
+          </div>
+
+          <div class="module-card module-card--featured reveal reveal--delay-2">
+            <div class="module-card__icon-wrap">
+              <iconify-icon icon="solar:pie-chart-2-bold" width="32" aria-hidden="true"></iconify-icon>
+            </div>
+            <p class="overline overline--sm">Módulo 05 · Principal</p>
+            <h3 class="module-card__title">Dashboard</h3>
+            <p class="module-card__text">
+              O cérebro do Almoçu. Consolida dados de todos os módulos e transforma em gráficos e insights para você tomar decisões com segurança.
+            </p>
+            <ul class="module-card__features">
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Gráficos de vendas e receita</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Itens mais e menos vendidos</li>
+              <li><iconify-icon icon="solar:check-square-bold" width="14" aria-hidden="true"></iconify-icon> Insights acionáveis do negócio</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===========================
+         VALOR
+    ============================ -->
+    <section class="section" id="valor">
+      <div class="container">
+
+        <div class="section__header reveal">
+          <p class="overline">
+            <iconify-icon icon="solar:star-bold" width="14" aria-hidden="true"></iconify-icon>
+            Proposta de valor
+          </p>
+          <h2 class="section__title">
+            Resultados que<br />
+            <span class="text-highlight">aparecem no caixa.</span>
+          </h2>
+        </div>
+
+        <div class="value__grid">
+
+          <div class="value-card reveal reveal--delay-1">
+            <iconify-icon icon="solar:trash-bin-minimalistic-bold" width="36" aria-hidden="true"></iconify-icon>
+            <h3 class="value-card__title">Menos desperdício</h3>
+            <p class="value-card__text">
+              Estoque controlado significa menos ingrediente vencendo e mais margem no final do mês. O sistema te avisa antes do problema acontecer.
+            </p>
+          </div>
+
+          <div class="value-card reveal reveal--delay-2">
+            <iconify-icon icon="solar:sort-by-time-bold" width="36" aria-hidden="true"></iconify-icon>
+            <h3 class="value-card__title">Operação eficiente</h3>
+            <p class="value-card__text">
+              Pedidos chegando certos, cozinha informada, entrega no prazo. Menos retrabalho, menos estresse, mais clientes satisfeitos.
+            </p>
+          </div>
+
+          <div class="value-card reveal reveal--delay-3">
+            <iconify-icon icon="solar:ranking-bold" width="36" aria-hidden="true"></iconify-icon>
+            <h3 class="value-card__title">Vantagem competitiva</h3>
+            <p class="value-card__text">
+              Dados reais do seu negócio viram decisões melhores. Enquanto o concorrente chuta, você sabe exatamente onde investir e o que cortar.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===========================
+         ROADMAP
+    ============================ -->
+    <section class="section section--alt" id="roadmap">
+      <div class="container">
+
+        <div class="section__header reveal">
+          <p class="overline">
+            <iconify-icon icon="solar:map-bold" width="14" aria-hidden="true"></iconify-icon>
+            Visão de futuro
+          </p>
+          <h2 class="section__title">
+            Começamos simples.<br />
+            <span class="text-highlight">Crescemos junto.</span>
+          </h2>
+          <p class="section__subtitle">
+            O Almoçu começa como sistema de gestão e evolui conforme o seu negócio cresce.
+          </p>
+        </div>
+
+        <div class="roadmap">
+
+          <div class="roadmap__item reveal reveal--delay-1">
+            <div class="roadmap__step">
+              <div class="step-circle">
+                <span class="step-circle__number">1</span>
               </div>
-              <div class="solution-point-text">
-                <strong>Módulos independentes</strong>
-                <p>Cada módulo funciona sozinho. Comece pelo PDV e expanda quando quiser.</p>
-              </div>
+              <div class="step-line" aria-hidden="true"></div>
             </div>
-            <div class="solution-point">
-              <div class="check-icon">
-                <i data-lucide="check" width="13" height="13"></i>
-              </div>
-              <div class="solution-point-text">
-                <strong>Sistema integrado</strong>
-                <p>Quando usados juntos, os módulos se comunicam e automatizam toda a operação.</p>
-              </div>
-            </div>
-            <div class="solution-point">
-              <div class="check-icon">
-                <i data-lucide="check" width="13" height="13"></i>
-              </div>
-              <div class="solution-point-text">
-                <strong>Feito para o seu negócio</strong>
-                <p>Não é um sistema genérico adaptado. É uma solução construída do zero para salgadarias.</p>
+            <div class="roadmap__content">
+              <div class="roadmap__tag">Agora · MVP</div>
+              <h3 class="roadmap__title">Sistema de Gestão</h3>
+              <p class="roadmap__text">
+                PDV, pedidos, cardápio, estoque e dashboard. Simples, direto e resolvendo os problemas mais críticos do dia a dia da lanchonete.
+              </p>
+              <div class="roadmap__features">
+                <span class="roadmap__feature"><iconify-icon icon="solar:check-circle-bold" width="14" aria-hidden="true"></iconify-icon> Operação centralizada</span>
+                <span class="roadmap__feature"><iconify-icon icon="solar:check-circle-bold" width="14" aria-hidden="true"></iconify-icon> Funcionamento offline</span>
+                <span class="roadmap__feature"><iconify-icon icon="solar:check-circle-bold" width="14" aria-hidden="true"></iconify-icon> Backup automático</span>
               </div>
             </div>
           </div>
 
-          <div class="modular-badge-group fade-in fade-in-delay-2">
-            <span class="mod-badge active">PDV</span>
-            <span class="mod-badge">Cardápio</span>
-            <span class="mod-badge">Estoque</span>
-            <span class="mod-badge">Dashboard</span>
+          <div class="roadmap__item reveal reveal--delay-2">
+            <div class="roadmap__step">
+              <div class="step-circle step-circle--future">
+                <span class="step-circle__number">2</span>
+              </div>
+              <div class="step-line" aria-hidden="true"></div>
+            </div>
+            <div class="roadmap__content">
+              <div class="roadmap__tag roadmap__tag--future">Próxima fase · ERP</div>
+              <h3 class="roadmap__title">Sistema Empresarial Completo</h3>
+              <p class="roadmap__text">
+                Módulos financeiros, gestão de equipe, folha de pagamento e integração fiscal. O negócio na palma da mão, de ponta a ponta.
+              </p>
+              <div class="roadmap__features">
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Financeiro e fluxo de caixa</span>
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Gestão de equipe</span>
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Integração fiscal avançada</span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div class="solution-visual fade-in fade-in-delay-1">
-          <div class="sol-card">
-            <div class="sol-card-icon"><i data-lucide="shopping-cart" width="20" height="20"></i></div>
-            <div class="sol-card-text">
-              <strong>PDV — Ponto de Venda</strong>
-              <span>Pedidos rápidos, pagamento com PIX e cartão</span>
+          <div class="roadmap__item reveal reveal--delay-3">
+            <div class="roadmap__step">
+              <div class="step-circle step-circle--future">
+                <span class="step-circle__number">3</span>
+              </div>
+            </div>
+            <div class="roadmap__content">
+              <div class="roadmap__tag roadmap__tag--future">Visão de longo prazo · EIP</div>
+              <h3 class="roadmap__title">Inteligência de Negócio</h3>
+              <p class="roadmap__text">
+                Combina dados internos e externos para sugerir decisões estratégicas. Previsão de demanda, otimização de preço e alertas preditivos.
+              </p>
+              <div class="roadmap__features">
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Previsão de demanda com IA</span>
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Dados externos integrados</span>
+                <span class="roadmap__feature roadmap__feature--future"><iconify-icon icon="solar:clock-circle-bold" width="14" aria-hidden="true"></iconify-icon> Decisões estratégicas guiadas</span>
+              </div>
             </div>
           </div>
-          <div class="sol-card">
-            <div class="sol-card-icon"><i data-lucide="book-open" width="20" height="20"></i></div>
-            <div class="sol-card-text">
-              <strong>Cardápio Digital</strong>
-              <span>Fotos, preços e fichas técnicas centralizadas</span>
-            </div>
-          </div>
-          <div class="sol-card">
-            <div class="sol-card-icon"><i data-lucide="package" width="20" height="20"></i></div>
-            <div class="sol-card-text">
-              <strong>Controle de Estoque</strong>
-              <span>Quantidades, fornecedores e alertas automáticos</span>
-            </div>
-          </div>
-          <div class="sol-card">
-            <div class="sol-card-icon"><i data-lucide="bar-chart-2" width="20" height="20"></i></div>
-            <div class="sol-card-text">
-              <strong>Dashboard de Resultados</strong>
-              <span>Faturamento e entradas de caixa em tempo real</span>
-            </div>
-          </div>
-          <div class="sol-card">
-            <div class="sol-card-icon"><i data-lucide="shield-check" width="20" height="20"></i></div>
-            <div class="sol-card-text">
-              <strong>Controle de Acesso</strong>
-              <span>Perfis e permissões por função do colaborador</span>
-            </div>
-          </div>
+
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
-       HOW IT WORKS SECTION
-  ============================================ -->
-  <section class="section section-alt" id="como-funciona">
-    <div class="container">
-      <div class="section-header fade-in" style="margin:0 auto;text-align:center;max-width:600px;">
-        <span class="section-label">Como Funciona</span>
-        <h2>Da configuração ao<br><span class="highlight">controle total</span></h2>
-        <p class="subtitle">Em 4 passos simples você coloca o Nosherp para trabalhar na sua salgadaria.</p>
-      </div>
+    <!-- ===========================
+         CTA PROTÓTIPO
+    ============================ -->
+    <section class="section cta-section" id="prototipo">
+      <div class="cta-section__glow" aria-hidden="true"></div>
+      <div class="container">
 
-      <div class="steps-grid">
-        <div class="step-card fade-in fade-in-delay-1">
-          <div class="step-number">1</div>
-          <h3>Cadastre seu Cardápio</h3>
-          <p>Adicione seus produtos com nome, preço, fotos e ficha técnica. Em minutos seu cardápio está pronto.</p>
-        </div>
-        <div class="step-card fade-in fade-in-delay-2">
-          <div class="step-number">2</div>
-          <h3>Registre Pedidos no PDV</h3>
-          <p>Use o caixa para criar e gerenciar pedidos com rapidez. Pagamento por cartão ou PIX sem complicação.</p>
-        </div>
-        <div class="step-card fade-in fade-in-delay-3">
-          <div class="step-number">3</div>
-          <h3>Controle o Estoque</h3>
-          <p>Acompanhe ingredientes e quantidade disponível. Saiba o que está acabando antes de faltar.</p>
-        </div>
-        <div class="step-card fade-in fade-in-delay-4">
-          <div class="step-number">4</div>
-          <h3>Veja os Resultados</h3>
-          <p>Acesse o dashboard e acompanhe o faturamento do dia, da semana e do mês em tempo real.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       MODULES SECTION
-  ============================================ -->
-  <section class="section" id="modulos">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Módulos</span>
-        <h2>Tudo que sua salgadaria<br><span class="highlight">precisa para crescer</span></h2>
-        <p class="subtitle">Cada módulo resolve um problema real da sua operação. Use separados ou todos integrados.</p>
-      </div>
-
-      <div class="modules-grid">
-
-        <!-- PDV -->
-        <div class="module-card featured fade-in fade-in-delay-1">
-          <div class="module-card-header">
-            <div class="module-icon">
-              <i data-lucide="shopping-cart" width="22" height="22"></i>
-            </div>
-            <span class="module-tag tag-first">Primeiro módulo</span>
+        <div class="cta__inner reveal">
+          <div class="badge badge--light">
+            <iconify-icon icon="solar:figma-bold" width="12" aria-hidden="true"></iconify-icon>
+            Protótipo disponível no Figma
           </div>
-          <h3>PDV — Ponto de Venda</h3>
-          <p>O coração do Nosherp. Um caixa rápido, intuitivo e seguro feito para o ritmo de uma salgadaria.</p>
-          <div class="module-features">
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Criar pedidos com agilidade</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cancelamento controlado pelo admin</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Pagamento por cartão e PIX</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Fechamento automático do caixa</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Histórico de operações e logs</div>
+          <h2 class="cta__title">
+            Quer ver como o<br />
+            <span class="text-highlight">Almoçu vai funcionar?</span>
+          </h2>
+          <p class="cta__subtitle">
+            O produto ainda está em desenvolvimento, mas o protótipo já mostra toda a experiência que estamos construindo. Explore as telas e sinta como seria operar com o Almoçu.
+          </p>
+          <div class="cta__actions">
+            <a href="https://www.figma.com/proto/HsCnQrsbUdS3UfWMzkrgMk/Projeto-Integrador-Sem-Nome?node-id=2159-1441&p=f&t=KcRXR3CeZATkitdw-0&scaling=scale-down&content-scaling=fixed&page-id=2159%3A976&starting-point-node-id=2159%3A1441" target="_blank" rel="noopener" class="btn btn--primary btn--lg btn--shimmer">
+              <iconify-icon icon="solar:figma-bold" width="20" aria-hidden="true"></iconify-icon>
+              Explorar protótipo
+            </a>
           </div>
-        </div>
-
-        <!-- Cardápio -->
-        <div class="module-card fade-in fade-in-delay-2">
-          <div class="module-card-header">
-            <div class="module-icon">
-              <i data-lucide="book-open" width="22" height="22"></i>
-            </div>
-            <span class="module-tag tag-soon">Em breve</span>
-          </div>
-          <h3>Cardápio</h3>
-          <p>Gerencie todos os seus produtos de forma centralizada, com fotos e fichas técnicas detalhadas.</p>
-          <div class="module-features">
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cadastro de produtos com ID automático</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Fotos e preços dos itens</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Ficha técnica opcional por produto</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Vínculo com itens do estoque</div>
-          </div>
-        </div>
-
-        <!-- Estoque -->
-        <div class="module-card fade-in fade-in-delay-1">
-          <div class="module-card-header">
-            <div class="module-icon">
-              <i data-lucide="layers" width="22" height="22"></i>
-            </div>
-            <span class="module-tag tag-soon">Em breve</span>
-          </div>
-          <h3>Estoque</h3>
-          <p>Controle ingredientes e insumos. Saiba o que tem disponível, o que está acabando e quem fornece.</p>
-          <div class="module-features">
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Cadastro de itens de estoque</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Quantidade disponível em tempo real</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Registro de fornecedores</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Atualização automática com as vendas</div>
-          </div>
-        </div>
-
-        <!-- Dashboard -->
-        <div class="module-card fade-in fade-in-delay-2">
-          <div class="module-card-header">
-            <div class="module-icon">
-              <i data-lucide="trending-up" width="22" height="22"></i>
-            </div>
-            <span class="module-tag tag-soon">Em breve</span>
-          </div>
-          <h3>Dashboard</h3>
-          <p>Visualize os resultados do seu negócio. Acompanhe o faturamento e tome decisões com dados reais.</p>
-          <div class="module-features">
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Entradas de caixa por período</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Acompanhamento de vendas</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Histórico detalhado de operações</div>
-            <div class="module-feature"><i data-lucide="check-circle" width="15" height="15"></i> Logs de ações do sistema</div>
-          </div>
+          <p class="cta__note">
+            <iconify-icon icon="solar:info-circle-bold" width="14" aria-hidden="true"></iconify-icon>
+            Produto em desenvolvimento · Protótipo navegável no Figma
+          </p>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
-       BENEFITS SECTION
-  ============================================ -->
-  <section class="section section-alt" id="beneficios">
-    <div class="container">
-      <div class="section-header fade-in" style="margin:0 auto;text-align:center;max-width:600px;">
-        <span class="section-label">Benefícios</span>
-        <h2>O que muda no seu<br><span class="highlight">negócio com o Nosherp</span></h2>
-        <p class="subtitle">Mais organização, menos erro, mais lucro. É isso que o Nosherp entrega.</p>
-      </div>
-
-      <div class="benefits-grid">
-        <div class="benefit-card fade-in fade-in-delay-1">
-          <div class="benefit-icon">
-            <i data-lucide="zap" width="24" height="24"></i>
+    <!-- ===========================
+         EMPRESA
+    ============================ -->
+    <section class="section section--alt company-section">
+      <div class="container">
+        <div class="company__inner reveal">
+          <p class="company__label">Desenvolvido e financiado por</p>
+          <div class="company__brand">
+            <iconify-icon icon="solar:link-bold" width="20" aria-hidden="true"></iconify-icon>
+            <span class="company__name">Beennect</span>
           </div>
-          <h3>Atendimento Mais Rápido</h3>
-          <p>Registre pedidos em segundos e elimine a fila. Menos espera, mais satisfação e mais vendas.</p>
-        </div>
-        <div class="benefit-card fade-in fade-in-delay-2">
-          <div class="benefit-icon">
-            <i data-lucide="check-circle" width="24" height="24"></i>
-          </div>
-          <h3>Menos Erros Operacionais</h3>
-          <p>Chega de pedidos errados, cancelamentos indevidos e confusão no caixa. Tudo registrado e controlado.</p>
-        </div>
-        <div class="benefit-card fade-in fade-in-delay-3">
-          <div class="benefit-icon">
-            <i data-lucide="package" width="24" height="24"></i>
-          </div>
-          <h3>Estoque Sempre Sob Controle</h3>
-          <p>Saiba o que tem e o que está acabando. Evite desperdício e nunca mais perca venda por falta de ingrediente.</p>
-        </div>
-        <div class="benefit-card fade-in fade-in-delay-1">
-          <div class="benefit-icon">
-            <i data-lucide="eye" width="24" height="24"></i>
-          </div>
-          <h3>Visão Clara do Faturamento</h3>
-          <p>Acompanhe quanto você está ganhando em tempo real. Tome decisões com dados, não com achismos.</p>
-        </div>
-        <div class="benefit-card fade-in fade-in-delay-2">
-          <div class="benefit-icon">
-            <i data-lucide="shield-check" width="24" height="24"></i>
-          </div>
-          <h3>Operação Segura e Confiável</h3>
-          <p>Controle de acesso por perfil, backup automático e logs completos de todas as operações.</p>
-        </div>
-        <div class="benefit-card fade-in fade-in-delay-3">
-          <div class="benefit-icon">
-            <i data-lucide="wifi-off" width="24" height="24"></i>
-          </div>
-          <h3>Funciona Offline</h3>
-          <p>Internet caiu? Sem problema. O Nosherp continua funcionando e sincroniza quando a conexão voltar.</p>
+          <p class="company__desc">
+            Construindo soluções tecnológicas para pequenos negócios crescerem com inteligência.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================================
-       EARLY ACCESS SECTION
-  ============================================ -->
-  <section class="section early-access" id="acesso">
-    <div class="container">
-      <div class="early-access-inner fade-in">
-        <span class="section-label">Acesso Antecipado</span>
-        <h2>Seja um dos primeiros<br>a testar o <span class="highlight">Nosherp</span></h2>
-        <p class="subtitle">
-          O Nosherp está em desenvolvimento e os primeiros cadastrados terão acesso antes de todo mundo.
-          Entre na lista, garanta sua vaga e ajude a moldar o produto.
-        </p>
+  </main>
 
-        <div class="early-form">
-          <input
-            type="email"
-            class="email-input"
-            id="earlyEmail"
-            placeholder="Seu melhor e-mail"
-            aria-label="E-mail para acesso antecipado"
-          />
-          <button class="btn btn-primary btn-lg" onclick="handleEmailSubmit('earlyEmail')">
-            <i data-lucide="rocket" width="16" height="16"></i>
-            Entrar na lista de acesso antecipado
-          </button>
-        </div>
-
-        <p class="early-note">
-          <i data-lucide="lock" width="13" height="13"></i>
-          Sem spam. Apenas novidades sobre o lançamento do Nosherp.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
+  <!-- ===========================
        FOOTER
-  ============================================ -->
+  ============================ -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo">Nosh<span>erp</span></div>
-          <p class="footer-tagline">PDV e gestão para salgadarias e pastelarias.</p>
-        </div>
-        <ul class="footer-links">
-          <li><a href="#problema">Problema</a></li>
-          <li><a href="#solucao">Solução</a></li>
-          <li><a href="#modulos">Módulos</a></li>
-          <li><a href="#acesso">Acesso</a></li>
-        </ul>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 Nosherp. Todos os direitos reservados.</p>
-        <a href="mailto:contato@nosherp.com.br" class="footer-email">
-          <i data-lucide="mail" width="13" height="13"></i>
-          contato@nosherp.com.br
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="logo" aria-label="Almoçu">
+          <span class="logo__icon" aria-hidden="true">
+            <iconify-icon icon="solar:chef-hat-bold" width="18"></iconify-icon>
+          </span>
+          <span class="logo__text">Almoçu</span>
         </a>
+        <p class="footer__tagline">Gestão inteligente para lanchonetes e restaurantes.</p>
       </div>
+      <nav class="footer__nav" aria-label="Navegação do rodapé">
+        <a href="#problema" class="footer__link">Problema</a>
+        <a href="#solucao" class="footer__link">Solução</a>
+        <a href="#modulos" class="footer__link">Módulos</a>
+        <a href="#roadmap" class="footer__link">Roadmap</a>
+        <a href="#prototipo" class="footer__link">Protótipo</a>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p class="footer__copy">© 2025 Almoçu · Desenvolvido pela Beennect</p>
+      <p class="footer__status">
+        <span class="status-dot" aria-hidden="true"></span>
+        Em desenvolvimento
+      </p>
     </div>
   </footer>
 
-  <!-- Toast notification -->
-  <div class="toast" id="toast">
-    <i data-lucide="check-circle" width="18" height="18"></i>
-    <span id="toastMessage">E-mail cadastrado com sucesso!</span>
-  </div>
-
-  <!-- ============================================
-       JAVASCRIPT
-  ============================================ -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
-# Documentação Almoçu
-
 # Almoçu PI 4° Semestre - Documentação
+![](./conteudo/almoçu.png)
 
 # 🛠️ Informações do Projeto
 

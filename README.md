@@ -1,5 +1,6 @@
 # Almoçu PI 4° Semestre - Documentação
-![](./conteudo/almoçu.png)
+
+![Logo do Projeto](./conteudo/almocu_logo.svg)
 
 # 🛠️ Informações do Projeto
 
@@ -35,59 +36,6 @@ Isso gera gastos desnecessários, diminuindo o lucro já apertado deles
 ## Solução Proposta
 
 Um sistema de gestão para simplificar e automatizar as operações de lanchonetes e restaurantes
-
----
-
-# 📆 Sobre mês de Março
-
-## ✅ O que foi desenvolvido
-
-### 1. Pesquisa de Mercado
-
-- Pesquisa na Internet
-- Entrevistas
-
-### 2. Desenvolvimento dos Requisitos
-
-### 3. Protótipo do Figma
-
-### 4. Módulos desenvolvidos
-
-- Menu
-- Pedidos
-- Estoque
-
----
-
-## 📝 Backlog
-
-### Quadro Kanban Geral
-
-![Quadro Kanban Geral.png](./conteudo/Quadro_Kanban_Geral.png)
-
-### Quadro Kanban MVP
-
-![Quadro Kanban MVP.png](./conteudo/Quadro_Kanban_MVP.png)
-
----
-
-## **⚠️** Pendências
-
-- Não adquirimos novos clientes
-- Não finalizamos o desenvolvimento do MVP
-
----
-
-## 🚫 Problemas
-
-- Não realizamos reuniões semanais como previsto
-- Comunicação entre a equipe não tão boa
-
----
-
-## ⏩ Próximo mês
-
-- Ter uma versão funcional do projeto
 
 ---
 
@@ -159,16 +107,116 @@ Um sistema de gestão para simplificar e automatizar as operações de lanchonet
 
 ## Desenvolvimento
 
-- Frontend: React, Tailwind, Ionic
-- Backend: Node, Golang
-- Versionamento: Git, Github
+- Frontend: React Native, Tailwindcss
+- Backend: Node, Docker
+- Versionamento: Git, Github, Gitlab
 - Banco: MongoDB
 
 ---
 
 # 💼 Modelo de Negócio Canvas
 
-![Modelo de Negócio Canvas - LeadSearch.png](./conteudo/Modelo_de_Negcio_Canvas_-_LeadSearch.png)
+![Modelo de Negócio Canvas.png](./conteudo/Modelo_de_Negcio_Canvas.png)
+
+---
+
+# 🔍 Estudo de Viabilidade
+
+## Viabilidade de Mercado
+
+- O mercado é **grande, pulverizado e com problemas reais recorrentes** (erros de pedido, desperdício, desorganização).
+- Existe **demanda clara por melhoria operacional**, mas baixa maturidade em gestão e uso de sistemas.
+- Forte presença de concorrentes (PDVs, ERPs), porém com **baixa aderência prática no dia a dia**.
+- Alta sensibilidade a preço e baixo ticket médio dificultam monetização.
+
+👉 **Conclusão:** Existe oportunidade, principalmente se o produto focar em resolver o operacional e não apenas gestão.
+
+---
+
+## Viabilidade de Recursos
+
+- Desenvolvimento envolve **complexidade moderada a alta**, principalmente em:
+    - Integrações (iFood, WhatsApp, pagamentos)
+    - Sincronização offline/online
+    - Tempo real (pedidos e fluxo)
+- Necessidade de:
+    - Backend robusto
+    - Interface extremamente simples (UX crítica)
+    - Infraestrutura confiável
+
+👉 **Conclusão:** Viável tecnicamente, mas exige boa execução e priorização de escopo (evitar overengineering no início).
+
+---
+
+## Viabilidade Operacional
+
+- Maior risco está na **adoção pelo usuário final**:
+    - Baixa disciplina de uso
+    - Pouco tempo para aprender sistemas
+    - Resistência a processos estruturados
+- Alta rotatividade de funcionários exige:
+    - sistema intuitivo
+    - curva de aprendizado mínima
+- Uso real tende a ser **parcial**, focado no que resolve o dia a dia.
+
+👉 **Conclusão:** Viável se o sistema for extremamente simples, rápido e focado em reduzir fricção operacional.
+
+---
+
+## Conclusão
+
+- A aplicação é **viável**, mas com riscos claros em:
+    - adoção
+    - uso consistente
+    - percepção de valor
+- O sucesso depende de um fator crítico:
+
+> Resolver problemas imediatos da operação (pedidos, fluxo, erros), antes de focar em gestão e análise.
+> 
+- Se bem executado, o sistema pode ocupar um espaço pouco explorado:
+
+👉 **entre o “PDV simples” e o “ERP complexo”**, com foco no uso real do dia a dia.
+
+---
+
+# 🎨 Design
+
+O design da aplicação foi concebido com foco em clareza, consistência e eficiência operacional, adotando uma abordagem moderna e orientada a componentes.
+
+## Cores
+
+- Contraste: $\colorbox{#FF5F2F}{  {\color{#F6F6F6}{\textbf{\#FF5F2F}}}}$
+
+**Tema Claro**
+
+- Background: $\colorbox{#F6F6F6}{  {\color{#3D3D3D}{\textbf{\#F6F6F6}}}}$
+- Foreground: $\colorbox{#E6E6E6}{  {\color{#3D3D3D}{\textbf{\#E6E6E6}}}}$
+
+**Tema Escuro**
+
+- Background: $\colorbox{#303030}{  {\color{#F6F6F6}{\textbf{\#303030}}}}$
+- Foreground: $\colorbox{#3D3D3D}{  {\color{#F6F6F6}{\textbf{\#3D3D3D}}}}$
+
+## Tipografia
+
+- Titulos: Khand
+- Texto: Jost
+
+## Icones
+
+- Biblioteca da Solar Icons
+
+---
+
+# 💾 Diagrama de Classe
+
+![DiagramaClasseAlmocu.png](./conteudo/DiagramaClasseAlmocu.png)
+
+---
+
+# 웃 Modelo Casos de Uso
+
+![DiagramaCasosUsosAlmocu.jpeg](./conteudo/DiagramaCasosUsosAlmocu.jpeg)
 
 ---
 

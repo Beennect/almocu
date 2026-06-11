@@ -254,6 +254,50 @@ O design da aplicação foi concebido com foco em clareza, consistência e efici
 
 ---
 
+# Estatítica Aplicada
+## a) GRÁFICOS:
+ - Dispersão: Quantidade de Produtos em Pedidos & Preço do Produto
+ - Série temporal: Tempo Médio de Entrega em Minutos
+ - Barras: Produto Mais Vendidos
+
+## b) MEDIDAS DE TENDÊNCIA CENTRAL
+ - MODA: No gráfico 'Produtos mais Vendidos', podemos ver que o produto 'Salada Caprese' é a moda
+ - MÉDIA: No gráfico 'Tempo Médio de Entrega em Minutos', temos a média do tempo de entrega variando entre os meses.
+ - MÉDIA: No gráfico 'Custo Médio x Últimos 12 Meses', temos a média do custo em Estoque no decorrer dos meses.
+ - MÉDIA: No gráfico 'Custo Médio x Categoria', temos a média do valor em Estoque por categoria nos últimos 3 meses.
+ - MEDIANA: No card 'Mediana do Custo Unit.', temos a mediana do custo unitário dos ingredientes/itens.
+
+## c) MEDIDAS DE VARIABILIDADE
+1-TEMPO DE ENTREGA
+- Soma total: 50.766
+- Variância: 316,57
+- Desvio Padrão: 17,43
+
+Os pedidos tendem a variar aproximadamente 17 minutos para mais ou para menos em relação ao tempo médio de entrega. Esse comportamento sugere que o processo logístico apresenta certa oscilação, podendo haver entregas significativamente mais rápidas ou mais lentas que o padrão observado.
+
+2-CUSTO UNITÁRIO
+- Soma total: 29.831,81
+- Variância: 293,14
+- Desvio Padrão: 17,12
+
+A variância de 293,14 demonstra que os custos unitários dos ingredientes ou produtos não são homogêneos. O desvio padrão de R$ 17,12 indica que os valores individuais tendem a se afastar em média cerca de dezessete reais do custo médio.
+
+3-QUANTIDADE DE PRODUTOS EM PEDIDOS
+- Soma total: 5.047
+- Variância: 0,68
+- Desvio Padrão: 0,82
+
+A variância de apenas 0,68 e o desvio padrão de 0,82 indicam uma dispersão muito baixa na quantidade de produtos por pedido.
+Isso significa que a maior parte dos pedidos possui uma quantidade de itens bastante próxima da média geral, havendo pouca diferença entre pedidos pequenos e grandes.
+Como o desvio padrão é inferior a 1 produto, pode-se afirmar que os clientes tendem a manter um padrão relativamente estável de compra.
+
+## d) COEFICIENTE DE VARIAÇÃO
+- TEMPO DE ENTREGA: 88,29%
+- CUSTO UNITÁRIO: 58,02%
+- QUANTIDADE DE PRODUTOS EM PEDIDOS: 41,01%
+
+A variável `TEMPO DE ENTREGA` foi a que apresentou maior variabilidade, enquanto que a `QUANTIDADE DE PRODUTOS EM PEDIDOS` foi a que menos apresenou variabilidade
+
 # 📱 Protótipo
 
 O protótipo foi desenvolvido no Figma. Já há interatividade, mas o objetivo principal é a visualização das páginas e a aplicação do Design.
